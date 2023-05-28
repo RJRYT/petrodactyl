@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-05-27T20:48:16+05:30",
+    "exported_at": "2023-05-28T14:43:59+05:30",
     "name": "SA-MP",
     "author": "bl4ckspr4y@protonmail.com",
-    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).",
+    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).\nModified by RJRYT",
     "features": null,
     "docker_images": {
         "Samp": "ghcr.io\/parkervcp\/games:samp"
@@ -15,14 +15,14 @@
     "file_denylist": [],
     "startup": ".\/samp03svr",
     "config": {
-        "files": "{\r\n    \"server.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"port\": \"port {{server.build.default.port}}\",\r\n            \"rcon_password\": \"rcon_password {{server.build.env.RCON_PASS}}\",\r\n            \"maxplayers\": \"maxplayers {{server.build.env.MAX_PLAYERS}}\",\r\n            \"output\": \"output 1\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"server.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"port\": \"port {{server.build.default.port}}\",\r\n            \"rcon_password\": \"rcon_password {{server.build.env.RCON_PASS}}\",\r\n            \"maxplayers\": \"maxplayers {{server.build.env.MAX_PLAYERS}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Started server on \"\r\n}",
         "logs": "{}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n\r\ncd \/tmp || exit\r\necho \"running: curl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_${VERSION}.tar.gz\"\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_\"${VERSION}\".tar.gz\r\necho \"####################################################\"\r\necho \"> Launching SA-MP Server.(Powered by Team Codroid)\"\r\necho \"####################################################\"\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz --strip-components=1 -C \/mnt\/server\/\r\n\r\ncd \/mnt\/server || exit\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password ${RCON_PASS}\" >> \/mnt\/server\/server.cfg\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"maxplayers ${MAX_PLAYERS}\" >> \/mnt\/server\/server.cfg\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"output 1\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server\r\n\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"\r\necho \"#########################################\"\r\necho \"> Codroid Panel: Start your server now\"\r\necho \"#########################################\"",
+            "script": "#!\/bin\/bash\r\n\r\ncd \/tmp || exit\r\necho \"running: curl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_${VERSION}.tar.gz\"\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_\"${VERSION}\".tar.gz\r\necho \"####################################################\"\r\necho \"> Launching SA-MP Server.(Powered by Team Codroid)\"\r\necho \"####################################################\"\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz --strip-components=1 -C \/mnt\/server\/\r\n\r\ncd \/mnt\/server || exit\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"port 7777\" >> \/mnt\/server\/server.cfg\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password ${RCON_PASS}\" >> \/mnt\/server\/server.cfg\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"maxplayers ${MAX_PLAYERS}\" >> \/mnt\/server\/server.cfg\r\n\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"output 1\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server\r\n\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"\r\necho \"#########################################\"\r\necho \"> Codroid Panel: Start your server now\"\r\necho \"#########################################\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "bash"
         }
